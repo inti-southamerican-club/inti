@@ -130,6 +130,8 @@ p { margin: 0; }
 .avatar { width: 104px; height: 104px; margin-bottom: 12px; display: grid; place-items: center; overflow: hidden; background: var(--sun-soft); color: var(--ink); font: 700 1.6rem/1 var(--display);
   clip-path: polygon(33% 0, 67% 0, 67% 17%, 83% 17%, 83% 33%, 100% 33%, 100% 67%, 83% 67%, 83% 83%, 67% 83%, 67% 100%, 33% 100%, 33% 83%, 17% 83%, 17% 67%, 0 67%, 0 33%, 17% 33%, 17% 17%, 33% 17%); }
 .avatar img { width: 100%; height: 100%; object-fit: cover; }
+.member .flags { position: absolute; top: 18px; right: 14px; display: flex; gap: 4px; }
+.member .flags svg { width: 24px; height: 16px; display: block; border-radius: 2px; box-shadow: 0 0 0 1px var(--line); }
 .member .role { font: 600 .74rem/1.3 var(--body); letter-spacing: .12em; text-transform: uppercase; color: var(--red); }
 .member .name { font: 500 1.05rem/1.3 var(--display); }
 .member .meta { color: var(--muted); font-size: .9rem; }
@@ -313,13 +315,14 @@ const SITE = {
   discord: "https://discord.gg/YOUR_INVITE",
 
   // Executive board: photo is optional (put files in photos/). Without one, initials are shown.
+  // flags: country codes shown in the card corner. Available: "pe" (Peru), "mx" (Mexico); add more in FLAGS below.
   board: [
-    { role: "Co-President", name: "Allison Dominguez", meta: "Nanoengineering, Senior", photo: "" },
-    { role: "Co-President", name: "Belen Olascuaga Viera", meta: "Business Economics, Senior", photo: "" },
-    { role: "Marketing Chair", name: "Leila Altomirano", meta: "Sociology, Sophomore", photo: "" },
-    { role: "Treasurer", name: "Maria Suarez", meta: "Business Economics, Senior", photo: "" },
-    { role: "Events Chair", name: "Kiara Aguirre", meta: "Cognitive Science, Sophomore", photo: "" },
-    { role: "Community Chair", name: "Eduardo Rosales", meta: "Chemistry, Senior", photo: "" },
+    { role: "Co-President", name: "Allison Dominguez", meta: "Nanoengineering, Senior", flags: ["pe"], photo: "" },
+    { role: "Co-President", name: "Belen Olascuaga Viera", meta: "Business Economics, Senior", flags: ["pe"], photo: "" },
+    { role: "Marketing Chair", name: "Leila Altomirano", meta: "Sociology, Sophomore", flags: ["pe"], photo: "" },
+    { role: "Treasurer", name: "Maria Suarez", meta: "Business Economics, Senior", flags: ["pe", "mx"], photo: "" },
+    { role: "Events Chair", name: "Kiara Aguirre", meta: "Cognitive Science, Sophomore", flags: ["pe"], photo: "" },
+    { role: "Community Chair", name: "Eduardo Rosales", meta: "Chemistry, Senior", flags: ["mx"], photo: "" },
   ],
 
   // Photos: put image files in the photos/ folder and list them here.
@@ -343,6 +346,10 @@ document.getElementById('instagram-link').href = SITE.instagram;
 document.getElementById('instagram-label').textContent = SITE.instagramHandle || 'Instagram';
 document.getElementById('discord-link').href = SITE.discord;
 
+const FLAGS = {
+  pe: { name: 'Peru', svg: '<rect width="3" height="2" fill="#D91023"/><rect x="1" width="1" height="2" fill="#fff"/>' },
+  mx: { name: 'Mexico', svg: '<rect width="3" height="2" fill="#CE1126"/><rect width="2" height="2" fill="#fff"/><rect width="1" height="2" fill="#006847"/><circle cx="1.5" cy="1" r=".28" fill="#8C5A2B"/>' },
+};
 const board = document.getElementById('board-grid');
 SITE.board.forEach(m => {
   const card = document.createElement('article');
@@ -354,6 +361,13 @@ SITE.board.forEach(m => {
   const role = document.createElement('span'); role.className = 'role'; role.textContent = m.role;
   const name = document.createElement('span'); name.className = 'name'; name.textContent = m.name;
   card.append(av, role, name);
+  if (m.flags && m.flags.length) {
+    const f = document.createElement('div'); f.className = 'flags';
+    m.flags.filter(c => FLAGS[c]).forEach(c => {
+      f.insertAdjacentHTML('beforeend', `<svg viewBox="0 0 3 2" role="img" aria-label="${FLAGS[c].name}"><title>${FLAGS[c].name}</title>${FLAGS[c].svg}</svg>`);
+    });
+    card.append(f);
+  }
   if (m.meta) { const x = document.createElement('span'); x.className = 'meta'; x.textContent = m.meta; card.append(x); }
   board.append(card);
 });
