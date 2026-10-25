@@ -98,7 +98,7 @@ p { margin: 0; }
 /* Events */
 .band { background: var(--surface); }
 .embed { width: 100%; border: 0; border-radius: var(--radius); background: var(--bg); }
-.cal-embed { height: 640px; }
+.cal-embed { height: 380px; }
 .placeholder { display: grid; place-items: center; gap: 10px; text-align: center; padding: 48px 24px; border: 2px dashed var(--line); border-radius: var(--radius); background: var(--bg); color: var(--muted); }
 .placeholder strong { color: var(--ink); font-family: var(--display); font-weight: 500; }
 .placeholder code { font-size: .9em; background: var(--surface); padding: 2px 6px; border-radius: 6px; }
@@ -302,7 +302,7 @@ const SITE = {
 
   // Google Calendar: Settings > your calendar > "Integrate calendar" > copy the src="..." URL from "Embed code".
   // The calendar must be public ("Make available to public").
-  calendarEmbed: "https://calendar.google.com/calendar/embed?src=c_f6dd01e2e17fce8a24524b7861ec7e2205c12ed9da5df9a4361f20855c0239c7%40group.calendar.google.com&ctz=America%2FLos_Angeles&showTitle=0&showPrint=0&showCalendars=0&showTz=0",
+  calendarEmbed: "https://calendar.google.com/calendar/embed?src=c_f6dd01e2e17fce8a24524b7861ec7e2205c12ed9da5df9a4361f20855c0239c7%40group.calendar.google.com&ctz=America%2FLos_Angeles&showTitle=0&showPrint=0&showCalendars=0&showTz=0&mode=AGENDA",
   // The calendar ID from the same page (looks like abc123@group.calendar.google.com). Used for the "Add to my calendar" button.
   calendarId: "c_f6dd01e2e17fce8a24524b7861ec7e2205c12ed9da5df9a4361f20855c0239c7@group.calendar.google.com",
   // Link people open to add the calendar to their own Google Calendar.
