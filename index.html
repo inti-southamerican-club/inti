@@ -302,9 +302,11 @@ const SITE = {
 
   // Google Calendar: Settings > your calendar > "Integrate calendar" > copy the src="..." URL from "Embed code".
   // The calendar must be public ("Make available to public").
-  calendarEmbed: "",
+  calendarEmbed: "https://calendar.google.com/calendar/embed?src=c_f6dd01e2e17fce8a24524b7861ec7e2205c12ed9da5df9a4361f20855c0239c7%40group.calendar.google.com&ctz=America%2FLos_Angeles&showTitle=0&showPrint=0&showCalendars=0&showTz=0",
   // The calendar ID from the same page (looks like abc123@group.calendar.google.com). Used for the "Add to my calendar" button.
-  calendarId: "",
+  calendarId: "c_f6dd01e2e17fce8a24524b7861ec7e2205c12ed9da5df9a4361f20855c0239c7@group.calendar.google.com",
+  // Link people open to add the calendar to their own Google Calendar.
+  calendarLink: "https://calendar.google.com/calendar/u/0?cid=Y19mNmRkMDFlMmUxN2ZjZThhMjQ1MjRiNzg2MWVjN2UyMjA1YzEyZWQ5ZGE1ZGY5YTQzNjFmMjA4NTVjMDIzOWM3QGdyb3VwLmNhbGVuZGFyLmdvb2dsZS5jb20",
 
   // Google Forms: open the form > Send > "<>" (embed) tab > copy the src="..." URL.
   newsletterForm: "",
@@ -391,7 +393,7 @@ cal.append(SITE.calendarEmbed
 if (SITE.calendarId) {
   const a = document.createElement('a');
   a.className = 'btn btn-sun'; a.target = '_blank'; a.rel = 'noopener';
-  a.href = 'https://calendar.google.com/calendar/r?cid=' + encodeURIComponent(SITE.calendarId);
+  a.href = SITE.calendarLink || 'https://calendar.google.com/calendar/r?cid=' + encodeURIComponent(SITE.calendarId);
   a.textContent = 'Add to my Google Calendar';
   document.getElementById('calendar-actions').append(a);
 }
