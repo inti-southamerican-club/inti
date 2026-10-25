@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
+<meta name="color-scheme" content="light">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Inti South American Club</title>
 <link rel="icon" type="image/png" href="favicon.png">
@@ -28,18 +29,7 @@
   --body: "Figtree", system-ui, -apple-system, "Segoe UI", sans-serif;
   --radius: 14px;
 }
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) {
-    --bg: #1a1210; --surface: #261b17; --ink: #f5ede6; --muted: #c2b2a8;
-    --sun: #f2b532; --sun-soft: #3a3020; --teal: #4fc2bb; --red: #e0645d; --line: #3a2b25; --on-sun: #1a1210; --on-red: #1a1210; --logo-plate: #e5c592; --logo-pad: 8%;
-    color-scheme: dark;
-  }
-}
-:root[data-theme="dark"] {
-  --bg: #1a1210; --surface: #261b17; --ink: #f5ede6; --muted: #c2b2a8;
-  --sun: #f2b532; --sun-soft: #3a3020; --teal: #4fc2bb; --red: #e0645d; --line: #3a2b25; --on-sun: #1a1210; --on-red: #1a1210; --logo-plate: #e5c592; --logo-pad: 8%;
-  color-scheme: dark;
-}
+:root { color-scheme: light; }
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } * { animation: none !important; transition: none !important; } }
