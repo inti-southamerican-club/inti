@@ -4,11 +4,12 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Inti South American Club</title>
+<link rel="icon" type="image/png" href="favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700&family=Figtree:wght@400;500;600&display=swap">
 <style>
-/* Layout: one scrolling page, sticky nav, sections separated by stepped Inca fret bands; Inti sun in the hero, chakana as the recurring mark */
+/* Layout: one scrolling page, sticky nav, sections separated by stepped Inca fret bands; club logo in the hero and nav, chakana as the recurring mark */
 :root {
   --bg: #fdfaf6;
   --surface: #f4efe9;
@@ -17,7 +18,9 @@
   --sun: #e9a20f;
   --sun-soft: #fbe7b5;
   --teal: #0e7470;
-  --red: #a3262b;
+  --red: #7a0f2a;
+  --logo-plate: transparent;
+  --logo-pad: 0px;
   --line: #e5dcd2;
   --on-sun: #2b1c16;
   --on-red: #fff8f2;
@@ -28,13 +31,13 @@
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
     --bg: #1a1210; --surface: #261b17; --ink: #f5ede6; --muted: #c2b2a8;
-    --sun: #f2b532; --sun-soft: #3a3020; --teal: #4fc2bb; --red: #e0645d; --line: #3a2b25; --on-sun: #1a1210; --on-red: #1a1210;
+    --sun: #f2b532; --sun-soft: #3a3020; --teal: #4fc2bb; --red: #e0645d; --line: #3a2b25; --on-sun: #1a1210; --on-red: #1a1210; --logo-plate: #e5c592; --logo-pad: 8%;
     color-scheme: dark;
   }
 }
 :root[data-theme="dark"] {
   --bg: #1a1210; --surface: #261b17; --ink: #f5ede6; --muted: #c2b2a8;
-  --sun: #f2b532; --sun-soft: #3a3020; --teal: #4fc2bb; --red: #e0645d; --line: #3a2b25; --on-sun: #1a1210; --on-red: #1a1210;
+  --sun: #f2b532; --sun-soft: #3a3020; --teal: #4fc2bb; --red: #e0645d; --line: #3a2b25; --on-sun: #1a1210; --on-red: #1a1210; --logo-plate: #e5c592; --logo-pad: 8%;
   color-scheme: dark;
 }
 * { box-sizing: border-box; }
@@ -64,7 +67,7 @@ p { margin: 0; }
 .nav { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 10; background: color-mix(in srgb, var(--bg) 88%, transparent); backdrop-filter: blur(10px); border-bottom: 1px solid var(--line); }
 .nav .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-block: 14px; }
 .brand { display: flex; align-items: center; gap: 10px; font: 700 1.1rem/1 var(--display); color: var(--ink); text-decoration: none; }
-.brand-sun { width: 26px; height: 26px; background: var(--sun); -webkit-mask: var(--chakana) center/contain no-repeat; mask: var(--chakana) center/contain no-repeat; }
+.brand-logo { width: 38px; height: 38px; border-radius: 8px; background: var(--logo-plate); padding: calc(var(--logo-pad) / 3); }
 .nav-links { display: flex; flex-wrap: wrap; gap: 4px 18px; list-style: none; margin: 0; padding: 0; }
 .nav-links a { color: var(--ink); text-decoration: none; font-weight: 500; font-size: .95rem; }
 .nav-links a:hover { color: var(--teal); }
@@ -87,11 +90,9 @@ p { margin: 0; }
 .hero-copy { display: grid; gap: 22px; min-width: 0; }
 .hero-copy > p { font-size: 1.2rem; color: var(--muted); max-width: 34ch; }
 .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; }
-.sun { width: 100%; max-width: 380px; aspect-ratio: 1; justify-self: center; }
-.sun svg { width: 100%; height: 100%; display: block; }
-.sun .rays { transform-origin: 100px 100px; animation: spin 120s linear infinite; }
-@keyframes spin { to { transform: rotate(360deg); } }
-@media (max-width: 760px) { .hero .wrap { grid-template-columns: 1fr; } .sun { max-width: 200px; grid-row: 1; justify-self: start; } }
+.hero-logo { width: 100%; max-width: 380px; aspect-ratio: 1; justify-self: center; border-radius: 28px; background: var(--logo-plate); padding: var(--logo-pad); }
+.hero-logo img { width: 100%; height: 100%; object-fit: contain; }
+@media (max-width: 760px) { .hero .wrap { grid-template-columns: 1fr; } .hero-logo { max-width: 180px; grid-row: 1; justify-self: start; } }
 
 /* About */
 .about-grid { display: grid; grid-template-columns: 1.1fr 1fr; gap: 48px; align-items: start; }
@@ -167,7 +168,7 @@ footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; g
 
 <nav class="nav" aria-label="Main">
   <div class="wrap">
-    <a class="brand" href="#top"><span class="brand-sun" aria-hidden="true"></span><span data-site="name">Inti</span></a>
+    <a class="brand" href="#top"><img class="brand-logo" src="logo.png" alt="" width="38" height="38"><span data-site="name">Inti</span></a>
     <ul class="nav-links">
       <li><a href="#about">About</a></li>
       <li><a href="#board">Board</a></li>
@@ -190,16 +191,7 @@ footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; g
           <a class="btn btn-ghost" href="#events">See upcoming events</a>
         </div>
       </div>
-      <div class="sun" aria-hidden="true">
-        <svg viewBox="0 0 200 200">
-          <g class="rays" id="rays"></g>
-          <circle cx="100" cy="100" r="54" fill="var(--sun)"/>
-          <circle cx="100" cy="100" r="44" fill="none" stroke="var(--on-sun)" stroke-width="3" stroke-dasharray="4 5" opacity=".55"/>
-          <path d="M76 88h16M108 88h16" stroke="var(--on-sun)" stroke-width="5" stroke-linecap="square"/>
-          <path d="M100 92v14h-6" fill="none" stroke="var(--on-sun)" stroke-width="4"/>
-          <path d="M84 116h32v6H84z" fill="var(--on-sun)"/>
-        </svg>
-      </div>
+      <div class="hero-logo"><img src="logo.png" alt="Inti South American Club logo" width="512" height="512"></div>
     </div>
   </header>
   <div class="fret" aria-hidden="true"></div>
@@ -360,20 +352,6 @@ document.getElementById('contact-email').textContent = SITE.email;
 document.getElementById('instagram-link').href = SITE.instagram;
 document.getElementById('instagram-label').textContent = SITE.instagramHandle || 'Instagram';
 document.getElementById('discord-link').href = SITE.discord;
-
-// Inti sun rays: alternating straight and stepped rays, like Inca gold sun discs
-(() => {
-  const g = document.getElementById('rays'), n = 16;
-  for (let i = 0; i < n; i++) {
-    const p = document.createElementNS('http://www.w3.org/2000/svg', 'path');
-    p.setAttribute('d', i % 2
-      ? 'M94 44 L94 34 L97 34 L97 22 L103 22 L103 34 L106 34 L106 44 Z'
-      : 'M92 46 L100 4 L108 46 Z');
-    p.setAttribute('fill', i % 2 ? 'var(--red)' : 'var(--sun)');
-    p.setAttribute('transform', `rotate(${i * 360 / n} 100 100)`);
-    g.append(p);
-  }
-})();
 
 const board = document.getElementById('board-grid');
 SITE.board.forEach(m => {
